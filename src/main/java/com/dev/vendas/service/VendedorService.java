@@ -4,16 +4,18 @@ import com.dev.vendas.exception.DataAlreadyRegistedException;
 import com.dev.vendas.exception.NotFoundException;
 import com.dev.vendas.model.Vendedor;
 import com.dev.vendas.repository.VendedorRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
 @Service
-@AllArgsConstructor
 public class VendedorService {
 
     private final VendedorRepository vendedorRepository;
+
+    public VendedorService(VendedorRepository vendedorRepository) {
+        this.vendedorRepository = vendedorRepository;
+    }
 
     public Vendedor save(Vendedor vendedor) {
         if (!Objects.isNull(vendedorRepository.findById(String.valueOf(vendedor.getVendedorId())))) {

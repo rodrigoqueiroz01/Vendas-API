@@ -4,7 +4,6 @@ import com.dev.vendas.dto.mapper.VendedorMapper;
 import com.dev.vendas.dto.request.VendedorRequest;
 import com.dev.vendas.dto.response.VendedorResponse;
 import com.dev.vendas.service.VendedorService;
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,11 +13,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vendas")
-@AllArgsConstructor
 @Validated
 public class VendedorController {
 
     private final VendedorService vendedorService;
+
+    public VendedorController(VendedorService vendedorService) {
+        this.vendedorService = vendedorService;
+    }
 
     @PostMapping
     public ResponseEntity<VendedorResponse> save(@Valid @RequestBody VendedorRequest vendedorRequest) {
