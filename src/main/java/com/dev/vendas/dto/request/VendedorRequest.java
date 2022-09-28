@@ -1,4 +1,4 @@
-package com.dev.vendas.api.dto.request;
+package com.dev.vendas.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

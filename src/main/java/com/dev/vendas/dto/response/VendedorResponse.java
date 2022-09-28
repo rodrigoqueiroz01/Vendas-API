@@ -1,6 +1,9 @@
-package com.dev.vendas.api.dto.response;
+package com.dev.vendas.dto.response;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
