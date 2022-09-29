@@ -34,17 +34,17 @@ public class VendedorRepository {
     }
 
     public String save(Vendedor vendedor) {
-        String sql = "insert into vendedor (nome, idade, sexo, numero_cadastro) values (?, ?, ?, ?)";
+        String createQuery = "insert into vendedor (nome, idade, sexo, numero_cadastro) values (?, ?, ?, ?)";
 
-        return String.valueOf(jdbcTemplate.update(sql, new Object[]{vendedor.getNome(), vendedor.getIdade(),
+        return String.valueOf(jdbcTemplate.update(createQuery, new Object[]{vendedor.getNome(), vendedor.getIdade(),
                 vendedor.getSexo(), vendedor.getNumeroCadastro()}));
     }
 
     public Vendedor findById(String id) {
-        String sql = "select * from vendedor where id = ?";
+        String readQuery = "select * from vendedor where id = ?";
 
         try {
-            return jdbcTemplate.queryForObject(sql, new Object[]{id}, new int []{Types.VARCHAR}, new VendedorRowMapper());
+            return jdbcTemplate.queryForObject(readQuery, new Object[]{id}, new int []{Types.VARCHAR}, new VendedorRowMapper());
         } catch (EmptyResultDataAccessException e) {
             throw new RuntimeException(e);
         }
@@ -55,10 +55,10 @@ public class VendedorRepository {
     }
 
     public Long delete(Vendedor vendedor) {
-        String sql = "delete from vendedor where id = ?";
+        String deleteQuery = "delete from vendedor where id = ?";
 
         try {
-            return Long.valueOf(jdbcTemplate.update(sql, vendedor.getVendedorId()));
+            return Long.valueOf(jdbcTemplate.update(deleteQuery, vendedor.getVendedorId()));
         } catch (EmptyResultDataAccessException e) {
             throw new RuntimeException(e);
         }
